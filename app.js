@@ -9,10 +9,7 @@ const mongoose = require('mongoose');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-let port = process.env.PORT; // connect to heroku or else use localhost:8000
-if (port == null || port == "") {
-  port = 8000;
-}
+const port = process.env.PORT || 5000; // connect to heroku or else use localhost:5000
 
 const app = express();
 
