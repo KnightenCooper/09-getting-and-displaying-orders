@@ -56,7 +56,7 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    MONGODB_URL
+    MONGODB_URL, options
   )
   .then(result => {
     User.findOne().then(user => {
