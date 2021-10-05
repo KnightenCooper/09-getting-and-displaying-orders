@@ -27,7 +27,7 @@ const options = {
     family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/Cluster0?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/cluster0?retryWrites=true&w=majority";
      
 
 app.set('view engine', 'ejs');
@@ -56,7 +56,7 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    MONGODB_URL, options
+    MONGODB_URL
   )
   .then(result => {
     User.findOne().then(user => {
