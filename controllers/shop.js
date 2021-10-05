@@ -46,7 +46,7 @@ exports.getIndex = (req, res, next) => {
 exports.getCart = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
-    // .execPopulate() // Team says to comment out for it to work because execPopulate is outdated
+    .execPopulate() // Team says to comment out for it to work because execPopulate is outdated but this gives me errors
     .then(user => {
       const products = user.cart.items;
       res.render('shop/cart', {
