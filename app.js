@@ -1,5 +1,7 @@
 const path = require('path');
 
+const cors = require('cors') // Connect to heroku
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,12 +9,29 @@ const mongoose = require('mongoose');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-let port = process.env.PORT;
+let port = process.env.PORT; // connect to heroku or else use localhost:8000
 if (port == null || port == "") {
   port = 8000;
 }
 
 const app = express();
+
+const corsOptions = { // connect to heroku
+  origin: "https://mongodb-website-4.herokuapp.com/",
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+const options = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    family: 4
+};
+
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/cluster0?retryWrites=true&w=majority";
+     
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -40,7 +59,7 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://user:watchingtv123@cluster0.djmy0.mongodb.net/cluster0?retryWrites=true&w=majority'
+    MONGODB_URL, options
   )
   .then(result => {
     User.findOne().then(user => {
