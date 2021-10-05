@@ -7,6 +7,11 @@ const mongoose = require('mongoose');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -14,6 +19,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const { debugPort } = require('process');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -49,7 +55,7 @@ mongoose
         user.save();
       }
     });
-    app.listen(1000);
+    app.listen(port); // localhost:8000
   })
   .catch(err => {
     console.log(err);
