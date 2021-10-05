@@ -17,7 +17,7 @@ if (port == null || port == "") {
 const app = express();
 
 const corsOptions = { // connect to heroku
-  origin: "https://mongodb-website-4.herokuapp.com/",
+  origin: "https://dry-lake-23473.herokuapp.com/",
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
