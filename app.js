@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000; // connect to heroku or else use localhos
 const app = express();
 
 const corsOptions = { // connect to heroku
-  origin: "https://mongodb-website-4.herokuapp.com/",
+  origin: "https://gentle-coast-86389.herokuapp.com/",
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
