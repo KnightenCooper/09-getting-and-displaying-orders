@@ -13,11 +13,13 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+  const color = req.body.color;
   const product = new Product({
     title: title,
     price: price,
     description: description,
     imageUrl: imageUrl,
+    color: color,
     userId: req.user
   });
   product
@@ -59,12 +61,14 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
+  const updatedColor = req.body.color;
 
   Product.findById(prodId)
     .then(product => {
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
+      product.color = updatedColor;
       product.imageUrl = updatedImageUrl;
       return product.save();
     })

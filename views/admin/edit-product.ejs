@@ -21,6 +21,10 @@
                 <input type="number" name="price" id="price" step="0.01" value="<% if (editing) { %><%= product.price %><% } %>">
             </div>
             <div class="form-control">
+                <label for="color">Color</label>
+                <input type="text" name="color" id="color" value="<% if (editing) { %><%= product.color %><% } %>">
+            </div>
+            <div class="form-control">
                 <label for="description">Description</label>
                 <textarea name="description" id="description" rows="5"><% if (editing) { %><%= product.description %><% } %></textarea>
             </div>
